@@ -1,0 +1,41 @@
+PODS:
+  - Alamofire (4.6.0)
+  - EmptyDataSet-Swift (4.0.2)
+  - Kingfisher (4.6.1)
+  - KRPullLoader (1.1.0)
+  - Realm (3.0.2):
+    - Realm/Headers (= 3.0.2)
+  - Realm/Headers (3.0.2)
+  - RealmSwift (3.0.2):
+    - Realm (= 3.0.2)
+  - RxSwift (4.1.0)
+  - SnapKit (4.0.0)
+  - SwiftIconFont (2.7.3)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - EmptyDataSet-Swift (~> 4.0.2)
+  - Kingfisher (~> 4.0)
+  - KRPullLoader
+  - RealmSwift
+  - RxSwift (~> 4.0)
+  - SnapKit (~> 4.0.0)
+  - SwiftIconFont
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  EmptyDataSet-Swift: 6bac1f5e8885acf60967decbf9ec57f4ad293b42
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  KRPullLoader: 8209e472b2f7f67b22e809f0b614ca1043a8239e
+  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
+  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+  RxSwift: 4219941c1244c88002901bd87a69d3aea9ae71f0
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SwiftIconFont: ebd8ee931a1e7072b61a87aec53f3a0786ef7f2b
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: c31c6c045b57a4beebc031c2be8edda71b630ed2
+
+COCOAPODS: 1.3.1
