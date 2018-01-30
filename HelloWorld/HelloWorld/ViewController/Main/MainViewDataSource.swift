@@ -137,6 +137,17 @@ extension MainViewDataSource: UISearchBarDelegate {
             self.presenter.fetchAppListingData(limit: (self.presenter.shouldPresentItem))
             self.shouldDisableLoadMore = false
         }
-        
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
