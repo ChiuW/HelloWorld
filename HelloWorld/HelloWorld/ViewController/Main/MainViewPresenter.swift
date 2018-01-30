@@ -57,7 +57,7 @@ final class MainViewPresenter: MainPresenter {
     
     var shouldPresentItem: Int{
         if (listItem.count > 10){
-            return (listItem.count % 10) * 10
+            return (listItem.count / 10) * 10
         }else{
             return 10
         }
