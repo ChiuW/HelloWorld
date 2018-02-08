@@ -7,30 +7,21 @@
 //
 
 import UIKit
-import KRPullLoader
 
 final class MainViewDataSource: NSObject {
     fileprivate let presenter : MainPresenter
     let appItemCellID = "appItemCellID"
     let appRecomCellID = "appRecomCellID"
     let textCellID = "cell"
-    let loadMoreView = KRPullLoadView()
-    var shouldDisableLoadMore : Bool = false
-    var searchText : String = ""
     
     init(presenter : MainPresenter) {
         self.presenter = presenter
     }
     
-    func configure(with collectionView: UICollectionView, with searchBar: UISearchBar) {
-        searchBar.delegate = self
+    func configure(with collectionView: UICollectionView) {
         collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.register(UINib(nibName: "AppItemCell", bundle: nil), forCellWithReuseIdentifier:appItemCellID)
         collectionView.register(AppRecomCell.self, forCellWithReuseIdentifier: appRecomCellID)
-        
-        loadMoreView.delegate = self
-        collectionView.addPullLoadableView(loadMoreView, type: .loadMore)
     }
 }
 
@@ -71,83 +62,5 @@ extension MainViewDataSource: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
-    }
-}
-
-extension MainViewDataSource: UICollectionViewDelegate {
-    
-}
-
-extension MainViewDataSource: UICollectionViewDelegateFlowLayout{
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if (indexPath.section == 0){
-            if (self.shouldDisableLoadMore || self.presenter.recommendItemList().count == 0) {
-                return CGSize(width: collectionView.frame.width, height: 1.0)
-            }else{
-                return CGSize(width: collectionView.frame.width, height: 210.0)
-            }
-        }else{
-            return CGSize(width: collectionView.frame.width, height: 90.0)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0.0
-    }
-}
-
-extension MainViewDataSource: KRPullLoadViewDelegate{
-    func pullLoadView(_ pullLoadView: KRPullLoadView, didChangeState state: KRPullLoaderState, viewType type: KRPullLoaderType) {
-        if type == .loadMore {
-            switch state {
-            case let .loading(completionHandler):
-                if (shouldDisableLoadMore){
-                    completionHandler()
-                    return
-                }
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+1) {
-                    completionHandler()
-                    self.presenter.fetchAppListingData(limit: (self.presenter.shouldPresentItem + 10))
-                }
-            default: break
-            }
-            return
-        }
-    }
-}
-
-extension MainViewDataSource: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if (searchText != ""){
-            self.presenter.fetchAppListingData(limit: self.presenter.shouldPresentItem, terms: searchText)
-            self.shouldDisableLoadMore = true
-        }else{
-            self.presenter.fetchAppListingData(limit: (self.presenter.shouldPresentItem))
-            self.shouldDisableLoadMore = false
-        }
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
     }
 }

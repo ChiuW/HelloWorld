@@ -12,10 +12,13 @@ protocol MainPresenter : class{
     init(view: MainView)
     var numberOfItem: Int { get }
     var shouldPresentItem: Int { get }
+    
     func appItem(at index: Int) -> RLM_AppItem
     func recommendItemList() -> [RLM_RecomAppItem]
+    
     func viewWillAppear()
     func viewWillDisappear()
+    
     func fetchAppListingData(limit: Int)
     func fetchAppListingData(limit: Int, terms: String)
     func fetchRecomendListData()
@@ -72,21 +75,19 @@ final class MainViewPresenter: MainPresenter {
     }
     
     func fetchAppListingData(limit: Int) {
-        print("fetchAppListingData : ",limit)
-        dataService.sharedInstance.getAppListing(searchTerms: "", limit: limit, page: 0) { (data) in
+        dataService.sharedInstance().getAppListing(searchTerms: "", limit: limit, page: 0) { (data) in
             self.listItem = data
         }
     }
+    
     func fetchAppListingData(limit: Int, terms: String) {
-        print("fetchAppListingData : ",limit, " terms :", terms)
-        dataService.sharedInstance.getAppListing(searchTerms: terms, limit: limit, page: 0) { (data) in
+        dataService.sharedInstance().getAppListing(searchTerms: terms, limit: limit, page: 0) { (data) in
             self.listItem = data
         }
     }
+    
     func fetchRecomendListData(){
-        print("fetchRecomendListData")
-        dataService.sharedInstance.getGrossingAppListing { (data) in
-            print("fetchRecomendListData success", data.count)
+        dataService.sharedInstance().getGrossingAppListing { (data) in
             self.recommendItem = data
         }
     }
