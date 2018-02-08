@@ -26,18 +26,14 @@ class dataService: NSObject {
     
     override init() {
         super.init()
-        self.resetDataBase()
-    }
-
-    private func resetDataBase(){
         try! realm.write {
             realm.deleteAll()
         }
     }
     
     public func getAppListing(searchTerms:String, limit:Int, page:Int, completed: @escaping (([RLM_AppItem])->Void) ){
-        let isNeedToUpdated = realm.objects(RLM_DbStatus.self)
-        if (isNeedToUpdated.count == 0 || !isNeedToUpdated[0].isListingFetchSuccess) {
+        print("numberOfItem '%@'", searchTerms)
+        if (!isListingFetchSuccess) {
             fetchListingData(completed: { (isSuccess) in
                 let appList = self.realm.objects(RLM_AppItem.self).sorted(byKeyPath: "ranking")
                 let result : [RLM_AppItem]
@@ -47,10 +43,8 @@ class dataService: NSObject {
         }else{
             var searchStr : String
             if (!searchTerms.isEmpty){
-                print("search : ",searchTerms)
-                searchStr = String(format: "name CONTAINS '%@'",searchTerms)
+                searchStr = String(format: "name BEGINSWITH '%@'",searchTerms)
                 let appList = self.realm.objects(RLM_AppItem.self).sorted(byKeyPath: "ranking").filter(searchStr)
-                print("search result : ",appList.count)
                 let result : [RLM_AppItem]
                 result = Array(appList)
                 completed(result)
@@ -83,31 +77,14 @@ class dataService: NSObject {
                         self.realm.add(AppItem)
                     }
                 }
-                let dbStatus = self.realm.objects(RLM_DbStatus.self).last
-                var isRecommendFetchSuccess : Bool = false
-                if ((dbStatus) != nil){
-                     isRecommendFetchSuccess = (dbStatus?.isRecommendFetchSuccess)!
-                }
-                
-                let oldDbStatus = self.realm.objects(RLM_DbStatus.self)
-                try! self.realm.write {
-                    self.realm.delete(oldDbStatus)
-                }
-                
-                let newDbStatus = RLM_DbStatus()
-                newDbStatus.isRecommendFetchSuccess = isRecommendFetchSuccess
-                newDbStatus.isListingFetchSuccess = true
-                try! self.realm.write {
-                    self.realm.add(newDbStatus)
-                }
+                self.isListingFetchSuccess = true
                 completed(true)
             }
         }
     }
     
     public func getGrossingAppListing(completed: @escaping (([RLM_RecomAppItem])->Void) ){
-        let isNeedToUpdated = realm.objects(RLM_DbStatus.self)
-        if (isNeedToUpdated.count == 0 || !isNeedToUpdated[0].isRecommendFetchSuccess) {
+        if (!isRecommendFetchSuccess) {
             fetchRecommendData(completed: { (isSuccess) in
                 let appList = self.realm.objects(RLM_RecomAppItem.self).sorted(byKeyPath: "ranking")
                 let result : [RLM_RecomAppItem]
@@ -142,23 +119,7 @@ class dataService: NSObject {
                         self.realm.add(AppItem)
                     }
                 }
-                let dbStatus = self.realm.objects(RLM_DbStatus.self).last
-                var isListingFetchSuccess : Bool = false
-                if ((dbStatus) != nil){
-                    isListingFetchSuccess = (dbStatus?.isListingFetchSuccess)!
-                }
-                
-                let oldDbStatus = self.realm.objects(RLM_DbStatus.self)
-                try! self.realm.write {
-                    self.realm.delete(oldDbStatus)
-                }
-                
-                let newDbStatus = RLM_DbStatus()
-                newDbStatus.isRecommendFetchSuccess = true
-                newDbStatus.isListingFetchSuccess = isListingFetchSuccess
-                try! self.realm.write {
-                    self.realm.add(newDbStatus)
-                }
+                self.isRecommendFetchSuccess = true
                 completed(true)
             }
         }

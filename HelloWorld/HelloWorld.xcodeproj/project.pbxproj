@@ -23,7 +23,6 @@
 		7202A3E0201E162000530C60 /* RLM_AppList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202A3DF201E162000530C60 /* RLM_AppList.swift */; };
 		7202A3E2201E19A700530C60 /* dataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202A3E1201E19A700530C60 /* dataService.swift */; };
 		7202A3E6201E3C5900530C60 /* AppRecomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202A3E4201E3C5900530C60 /* AppRecomCell.swift */; };
-		7202A3E9201F50CD00530C60 /* RLM_DbStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202A3E8201F50CD00530C60 /* RLM_DbStatus.swift */; };
 		7202A3EC201F5ACD00530C60 /* AppRecomItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202A3EA201F5ACD00530C60 /* AppRecomItemCell.swift */; };
 		7202A3ED201F5ACD00530C60 /* AppRecomItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7202A3EB201F5ACD00530C60 /* AppRecomItemCell.xib */; };
 		DCDA1BA882D55E9E9FE43AB3 /* Pods_HelloWorld.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553F58B33EDE68AD389F1420 /* Pods_HelloWorld.framework */; };
@@ -49,7 +48,6 @@
 		7202A3DF201E162000530C60 /* RLM_AppList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLM_AppList.swift; sourceTree = "<group>"; };
 		7202A3E1201E19A700530C60 /* dataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataService.swift; sourceTree = "<group>"; };
 		7202A3E4201E3C5900530C60 /* AppRecomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRecomCell.swift; sourceTree = "<group>"; };
-		7202A3E8201F50CD00530C60 /* RLM_DbStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLM_DbStatus.swift; sourceTree = "<group>"; };
 		7202A3EA201F5ACD00530C60 /* AppRecomItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRecomItemCell.swift; sourceTree = "<group>"; };
 		7202A3EB201F5ACD00530C60 /* AppRecomItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppRecomItemCell.xib; sourceTree = "<group>"; };
 		A0D52FCE83C3F149C3F8DC2F /* Pods-HelloWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloWorld/Pods-HelloWorld.debug.xcconfig"; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				7202A3DF201E162000530C60 /* RLM_AppList.swift */,
-				7202A3E8201F50CD00530C60 /* RLM_DbStatus.swift */,
 			);
 			path = DB;
 			sourceTree = "<group>";
@@ -363,7 +360,6 @@
 				7202A3E6201E3C5900530C60 /* AppRecomCell.swift in Sources */,
 				7202A3C12018D68B00530C60 /* MainViewController.swift in Sources */,
 				7202A3CD201CBCEC00530C60 /* networkService.swift in Sources */,
-				7202A3E9201F50CD00530C60 /* RLM_DbStatus.swift in Sources */,
 				7202A3C52018DCEE00530C60 /* MainViewDataSource.swift in Sources */,
 				7202A3D4201CD67F00530C60 /* AppListingResponse.swift in Sources */,
 				7202A3EC201F5ACD00530C60 /* AppRecomItemCell.swift in Sources */,

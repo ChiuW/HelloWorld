@@ -123,6 +123,9 @@ class MainViewController: UIViewController, MainView ,UICollectionViewDelegate, 
             self.isSearching = false
             self.presenter.fetchAppListingData(limit: (self.presenter.shouldPresentItem))
         }
+        self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                         at: .top,
+                                         animated: true)
     }
     
     //MARK:- KRPullLoadViewDelegate
