@@ -49,17 +49,6 @@ extension MainViewDataSource: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if (indexPath.section == 1){
-            cell.alpha = 0
-            cell.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0.5)
-            UIView.animate(withDuration: 0.4, animations: { () -> Void in
-                cell.alpha = 1
-                cell.layer.transform = CATransform3DScale(CATransform3DIdentity, 1, 1, 1)
-            })
-        }
-    }
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
