@@ -7,11 +7,6 @@
 //
 
 import Foundation
-//https://itunes.apple.com/hk/rss/topfreeapplications/limit=100/json and
-//
-//https://itunes.apple.com/hk/lookup?id=%5bapp_id
-//
-//https://itunes.apple.com/hk/rss/topgrossingapplications/limit=10/json
 
 let API_SSL_PROTOCOL = "https://"
 
