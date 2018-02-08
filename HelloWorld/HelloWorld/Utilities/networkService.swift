@@ -12,9 +12,18 @@ import Alamofire
 //import SwiftyJSON
 
 class networkService: NSObject {
-    static var sharedInstance : networkService = networkService()
+    
+    static var mInstance : networkService?
+    
+    static func sharedInstance() -> networkService {
+        if mInstance == nil {
+            mInstance = networkService()
+        }
+        return mInstance!
+    }
     
     override init() {
+        
     }
     
     public func getAppList(completed: @escaping ((AppListingResponse)->Void)){

@@ -64,7 +64,7 @@ class dataService: NSObject {
     }
     
     func fetchListingData(completed: @escaping ((Bool)->Void)){
-        networkService.sharedInstance.getAppList { (data) in
+        networkService.sharedInstance().getAppList { (data) in
             if (data.entries == nil){
                 completed(false)
             }else{
@@ -123,7 +123,7 @@ class dataService: NSObject {
     }
     
     func fetchRecommendData(completed: @escaping ((Bool)->Void)){
-        networkService.sharedInstance.getGrossingAppList { (data) in
+        networkService.sharedInstance().getGrossingAppList { (data) in
             if (data.entries == nil){
                 completed(false)
             }else{

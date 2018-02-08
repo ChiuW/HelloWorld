@@ -32,7 +32,7 @@ extension MainViewDataSource: UICollectionViewDataSource {
         }else{
             return presenter.numberOfItem
         }
-    } 
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
