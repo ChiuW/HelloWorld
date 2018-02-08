@@ -15,7 +15,6 @@ class networkService: NSObject {
     static var sharedInstance : networkService = networkService()
     
     override init() {
-        
     }
     
     public func getAppList(completed: @escaping ((AppListingResponse)->Void)){

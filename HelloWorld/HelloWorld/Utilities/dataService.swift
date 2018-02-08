@@ -10,14 +10,30 @@ import UIKit
 import RealmSwift
 
 class dataService: NSObject {
-    static var sharedInstance : dataService = dataService()
+    static var mInstance : dataService?
     
     let realm = try! Realm()
-    override init() {
-        
+    
+    var isListingFetchSuccess: Bool = false
+    var isRecommendFetchSuccess: Bool = false
+    
+    static func sharedInstance() -> dataService {
+        if mInstance == nil {
+            mInstance = dataService()
+        }
+        return mInstance!
     }
     
-   
+    override init() {
+        super.init()
+        self.resetDataBase()
+    }
+
+    private func resetDataBase(){
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
     
     public func getAppListing(searchTerms:String, limit:Int, page:Int, completed: @escaping (([RLM_AppItem])->Void) ){
         let isNeedToUpdated = realm.objects(RLM_DbStatus.self)
